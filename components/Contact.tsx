@@ -68,7 +68,7 @@ const Contact = () => {
             Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Touch</span>
           </h2>
           <p className="text-gray-300 max-w-xl mx-auto">
-            Ready to collaborate? Let's get in touch.
+            Ready to collaborate? Let&apos;s get in touch.
           </p>
         </motion.div>
 

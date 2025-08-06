@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import { Download, ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import heroAnimation from '../public/hero-animation.json';
-import { useRef, useEffect } from 'react';
+
 import Typewriter from 'typewriter-effect';
 
 const Hero = () => {

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Code2, Database, Globe, Server, Smartphone, Zap } from 'lucide-react';
+import { Code2, Database, Globe, Server } from 'lucide-react';
 
 const About = () => {
   const highlights = [
@@ -127,7 +127,7 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 <p className="text-base sm:text-lg">
-                  Hello! I'm Sergey Davidovich, a passionate full stack developer with a love for creating 
+                  Hello! I&apos;m Sergey Davidovich, a passionate full stack developer with a love for creating 
                   digital experiences that make a difference. With expertise spanning both frontend and backend 
                   technologies, I bring ideas to life through clean, efficient code and thoughtful design.
                 </p>
@@ -139,7 +139,7 @@ const About = () => {
                 </p>
 
                 <p className="text-sm sm:text-base">
-                  When I'm not coding, you'll find me exploring the latest tech trends, contributing to open-source 
+                  When I&apos;m not coding, you&apos;ll find me exploring the latest tech trends, contributing to open-source 
                   projects, or sharing knowledge with the developer community. I believe in continuous learning 
                   and staying ahead of the curve in this ever-evolving field.
                 </p>

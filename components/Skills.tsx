@@ -3,17 +3,9 @@
 import { motion } from 'framer-motion';
 import { 
   Code2, 
-  Database, 
   Server, 
   Palette, 
-  Globe, 
-  GitBranch,
-  Container,
-  Languages,
-  Layers,
-  FileCode,
-  Smartphone,
-  Settings
+  Languages
 } from 'lucide-react';
 
 const Skills = () => {
