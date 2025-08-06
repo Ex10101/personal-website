@@ -11,7 +11,6 @@ const Hero = () => {
   const handleDownloadCV = () => {
     // This will be implemented later when i have my CV file
     console.log('Download CV clicked');
-    // You can replace this with actual file download logic
     // const link = document.createElement('a');
     // link.href = '/path-to-your-cv.pdf';
     // link.download = 'Sergey_Davidovich_CV.pdf';
@@ -102,8 +101,7 @@ const Hero = () => {
             >
               <motion.button
                 onClick={handleDownloadCV}
-                className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-purple-500/25"
-                whileHover={{ scale: 1.02, y: -2 }}
+                className="group cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-purple-500/25"
                 whileTap={{ scale: 0.98 }}
               >
                 <Download size={20} />

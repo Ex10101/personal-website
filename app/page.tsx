@@ -2,6 +2,9 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
+import Projects from '../components/Projects';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -10,17 +13,12 @@ export default function Home() {
         <Navbar />
         <Hero />
         <About />
-        
         <Skills />
         
-        <section id="projects" className="min-h-screen bg-gray-800 flex items-center justify-center">
-          <div className="text-white text-2xl">Projects Section (Coming Soon)</div>
-        </section>
-        
-        <section id="contact" className="min-h-screen bg-gray-900 flex items-center justify-center">
-          <div className="text-white text-2xl">Contact Section (Coming Soon)</div>
-        </section>
+        <Projects />
+        <Contact />
       </div>
+      <Footer />
     </main>
   );
 }

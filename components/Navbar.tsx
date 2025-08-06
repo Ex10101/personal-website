@@ -55,9 +55,9 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a href="#" className="text-2xl font-bold text-white">
-              <span className="text-purple-400">S</span>ergey 
-              <span className="text-purple-400">D</span>avidovich
+            <a href="#" className="text-2xl font-foldit text-white" style={{ fontWeight: 800 }}>
+              <span className="text-purple-400">S</span>
+              <span className="text-purple-400">D</span>
             </a>
           </motion.div>
 
@@ -70,7 +70,7 @@ const Navbar = () => {
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1"
+                    className="text-gray-300 cursor-pointer hover:text-purple-400 focus:text-purple-400 focus:outline-purple-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1"
                     whileHover={{ y: -2 }}
                     whileTap={{ y: 0 }}
                   >
@@ -80,7 +80,7 @@ const Navbar = () => {
                 );
               })}
               <motion.button
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
+                className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -120,7 +120,7 @@ const Navbar = () => {
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2"
+                    className="text-gray-300 hover:text-purple-400 focus:text-purple-400 focus:outline-purple-500 px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2"
                     whileHover={{ x: 5 }}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
