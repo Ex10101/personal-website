@@ -4,10 +4,17 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import { Download, ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import heroAnimation from '../public/hero-animation.json';
-
 import Typewriter from 'typewriter-effect';
+import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const Hero = () => {
+  const { 
+    isMobile, 
+    prefersReducedMotion, 
+    shouldReduceAnimations, 
+    getOptimizedMotionProps 
+  } = usePerformanceOptimization();
+
   const handleDownloadCV = () => {
     // This will be implemented later when i have my CV file
     console.log('Download CV clicked');
@@ -26,12 +33,14 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen pt-28 pb-28 lg:pb-0 lg:pt-0 flex items-center justify-center relative overflow-visible bg-gradient-to-b from-gray-900/50 via-gray-800/50 to-black/50">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-visible">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 left-40 w-60 h-60 bg-teal-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-      </div>
+      {/* Background decorative elements - conditionally animated */}
+      {!prefersReducedMotion && (
+        <div className="absolute inset-0 overflow-visible">
+          <div className={`absolute -top-40 -right-40 w-80 h-80 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 ${isMobile ? '' : 'animate-pulse'}`}></div>
+          <div className={`absolute -bottom-40 -left-40 w-80 h-80 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 ${isMobile ? '' : 'animate-pulse'}`}></div>
+          <div className={`absolute top-40 left-40 w-60 h-60 bg-teal-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 ${isMobile ? '' : 'animate-pulse'}`}></div>
+        </div>
+      )}
 
 
 
@@ -148,37 +157,58 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Lottie Animation */}
+          {/* Lottie Animation - Optimized for mobile */}
           <motion.div
             className="flex justify-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={prefersReducedMotion ? {} : { opacity: 0, x: 50 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
+            transition={prefersReducedMotion ? {} : { duration: 0.8, delay: 0.4 }}
           >
             <div className="relative w-1/2 h-1/2">
               <div className="w-full max-w-2xl">
-                <Lottie
-                  animationData={heroAnimation}
-                  loop={true}
-                  className="w-full h-auto"
-                />
+                {!prefersReducedMotion ? (
+                  <Lottie
+                    animationData={heroAnimation}
+                    loop={true}
+                    className="w-full h-auto"
+                    style={{ willChange: 'transform' }}
+                    rendererSettings={{
+                      preserveAspectRatio: 'xMidYMid slice',
+                      progressiveLoad: true,
+                      hideOnTransparent: true
+                    }}
+                    // Mobile optimizations
+                    {...(isMobile && {
+                      quality: 'low',
+                      autoplay: true,
+                      loop: true,
+                      speed: 0.8, // Slower on mobile to reduce CPU usage
+                    })}
+                  />
+                ) : (
+                  // Static fallback for reduced motion
+                  <div className="w-full h-auto aspect-square bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                    <div className="text-4xl">💻</div>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
         </div>
       </div>
-      {/* Scroll indicator */}
+      {/* Scroll indicator - Optimized for mobile */}
       <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+          transition={prefersReducedMotion ? {} : { delay: 1.5, duration: 0.6 }}
         >
           <motion.button
             onClick={scrollToNext}
             className="flex flex-col items-center space-y-2 text-gray-400 hover:text-white transition-colors duration-300"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
+            animate={!prefersReducedMotion && !isMobile ? { y: [0, 10, 0] } : {}}
+            transition={!prefersReducedMotion && !isMobile ? { repeat: Infinity, duration: 2 } : {}}
+            style={{ willChange: 'transform' }}
           >
             <span className="text-sm">Scroll to explore</span>
             <ArrowDown size={20} />

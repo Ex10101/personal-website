@@ -3,8 +3,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Code2, Database, Globe, Server } from 'lucide-react';
+import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const About = () => {
+  const { 
+    isMobile, 
+    prefersReducedMotion, 
+    shouldReduceAnimations 
+  } = usePerformanceOptimization();
+
   const highlights = [
     {
       icon: Code2,
@@ -30,11 +37,13 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-8 sm:py-12 lg:py-16 bg-gradient-to-t from-gray-900/50 via-gray-800/50 to-black/50 overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 sm:top-20 right-4 sm:right-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-      </div>
+      {/* Background decorative elements - conditionally animated */}
+      {!prefersReducedMotion && (
+        <div className="absolute inset-0 overflow-hidden">
+          <div className={`absolute top-10 sm:top-20 right-4 sm:right-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 ${isMobile ? '' : 'animate-pulse'}`}></div>
+          <div className={`absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 ${isMobile ? '' : 'animate-pulse'}`}></div>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -57,7 +66,7 @@ const About = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.15 }}
               >
-                <div className="relative w-80 sm:w-96 h-[20rem] sm:h-[24rem] lg:h-[28rem] rounded-xl overflow-hidden">
+                <div className="relative w-72 sm:w-96 h-[20rem] sm:h-[24rem] lg:h-[28rem] rounded-xl overflow-hidden">
                   <Image
                     src="/about-image.png"
                     alt="Sergey Davidovich - Full Stack Developer"
@@ -71,17 +80,23 @@ const About = () => {
                 </div>
               </motion.div>
 
-              {/* Floating elements */}
-              <motion.div
-                className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 3 }}
-              ></motion.div>
-              <motion.div
-                className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-4 h-4 sm:w-6 sm:h-6 bg-blue-500 rounded-full"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 2, delay: 1 }}
-              ></motion.div>
+              {/* Floating elements - conditionally animated */}
+              {!prefersReducedMotion && !isMobile && (
+                <>
+                  <motion.div
+                    className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-full"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3 }}
+                    style={{ willChange: 'transform' }}
+                  ></motion.div>
+                  <motion.div
+                    className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-4 h-4 sm:w-6 sm:h-6 bg-blue-500 rounded-full"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+                    style={{ willChange: 'transform' }}
+                  ></motion.div>
+                </>
+              )}
             </div>
           </motion.div>
 

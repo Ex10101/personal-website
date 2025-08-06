@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 overflow-hidden ${
         scrolled 
           ? 'bg-gray-900/80 backdrop-blur-lg shadow-lg shadow-gray-900/20' 
           : 'bg-gray-900/50 backdrop-blur-sm shadow-md shadow-gray-900/10'
@@ -47,7 +47,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div
