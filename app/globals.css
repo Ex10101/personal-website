@@ -72,15 +72,36 @@ html {
 
 /* Mobile performance optimizations */
 @media (max-width: 768px) {
-  /* Reduce animation complexity on mobile */
+  /* Disable heavy animations on mobile */
   .animate-pulse {
-    animation-duration: 3s !important;
+    animation: none !important;
   }
   
-  /* GPU acceleration for transforms */
+  .animate-spin-slow {
+    animation: none !important;
+  }
+  
+  /* Reduce will-change usage */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* Simplify backdrop blur for better performance */
+  .backdrop-blur-sm {
+    backdrop-filter: none;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Disable transform3d usage */
   .transform {
-    transform: translateZ(0);
-    will-change: transform;
+    transform: none !important;
+  }
+  
+  /* Optimize gradients for mobile */
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .bg-gradient-to-t {
+    background: var(--background) !important;
   }
 }
 

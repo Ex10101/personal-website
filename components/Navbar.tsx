@@ -3,10 +3,15 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Download, Code, User, Briefcase, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { 
+    shouldReduceAnimations,
+    getOptimizedMotionProps 
+  } = usePerformanceOptimization();
 
   useEffect(() => {
     const handleScroll = () => {

@@ -49,15 +49,19 @@ const Hero = () => {
           {/* Text Content */}
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            {...getOptimizedMotionProps({
+              initial: { opacity: 0, x: -50 },
+              animate: { opacity: 1, x: 0 },
+              transition: { duration: 0.8 }
+            })}
           >
             <div className="space-y-4">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
+                {...getOptimizedMotionProps({
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { delay: 0.2, duration: 0.6 }
+                })}
                 className="mb-2"
               >
                 <span className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600/30 to-blue-600/30 text-white rounded-full text-lg font-bold border-2 border-purple-500/50 shadow-lg shadow-purple-500/25 backdrop-blur-sm">
@@ -67,31 +71,39 @@ const Hero = () => {
 
               <motion.h1
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                {...getOptimizedMotionProps({
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { delay: 0.4, duration: 0.6 }
+                })}
               >
-                <Typewriter
-                  options={{
-                    strings: [
-                      'Hi, I\'m <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sergey Davidovich</span>',
-                      'Full Stack <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Developer</span>',
-                      'Problem <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Solver</span>',
-                      'Code <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Enthusiast</span>'
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    delay: 75,
-                    deleteSpeed: 20,
-                  }}
-                />
+                {!shouldReduceAnimations ? (
+                  <Typewriter
+                    options={{
+                      strings: [
+                        'Hi, I\'m <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sergey Davidovich</span>',
+                        'Full Stack <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Developer</span>',
+                        'Problem <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Solver</span>',
+                        'Code <span class="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Enthusiast</span>'
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      delay: 75,
+                      deleteSpeed: 20,
+                    }}
+                  />
+                ) : (
+                  <span>Hi, I'm <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sergey Davidovich</span></span>
+                )}
               </motion.h1>
 
               <motion.p
                 className="text-xl text-gray-300 max-w-2xl leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                {...getOptimizedMotionProps({
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { delay: 0.6, duration: 0.6 }
+                })}
               >
                 Passionate full stack developer with expertise in modern web technologies. 
                 I create beautiful, functional, and scalable applications that deliver 
@@ -104,21 +116,27 @@ const Hero = () => {
             {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              {...getOptimizedMotionProps({
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { delay: 0.8, duration: 0.6 }
+              })}
             >
               <motion.button
                 onClick={handleDownloadCV}
                 className="group cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-purple-500/25"
-                whileTap={{ scale: 0.98 }}
+                {...getOptimizedMotionProps({
+                  whileTap: { scale: 0.98 }
+                })}
               >
                 <Download size={20} />
                 <span>Download CV</span>
                 <motion.div
                   className="ml-2"
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  {...getOptimizedMotionProps({
+                    animate: { x: [0, 4, 0] },
+                    transition: { repeat: Infinity, duration: 1.5 }
+                  })}
                 >
                   →
                 </motion.div>
@@ -130,8 +148,10 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  {...getOptimizedMotionProps({
+                    whileHover: { scale: 1.05, y: -2 },
+                    whileTap: { scale: 0.95 }
+                  })}
                 >
                   <Github size={20} />
                 </motion.a>
@@ -140,16 +160,20 @@ const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  {...getOptimizedMotionProps({
+                    whileHover: { scale: 1.05, y: -2 },
+                    whileTap: { scale: 0.95 }
+                  })}
                 >
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
                   href="mailto:your.email@example.com"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  {...getOptimizedMotionProps({
+                    whileHover: { scale: 1.05, y: -2 },
+                    whileTap: { scale: 0.95 }
+                  })}
                 >
                   <Mail size={20} />
                 </motion.a>
@@ -160,37 +184,28 @@ const Hero = () => {
           {/* Lottie Animation - Optimized for mobile */}
           <motion.div
             className="flex justify-center"
-            initial={prefersReducedMotion ? {} : { opacity: 0, x: 50 }}
-            animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
-            transition={prefersReducedMotion ? {} : { duration: 0.8, delay: 0.4 }}
+            {...getOptimizedMotionProps({
+              initial: { opacity: 0, x: 50 },
+              animate: { opacity: 1, x: 0 },
+              transition: { duration: 0.8, delay: 0.4 }
+            })}
           >
             <div className="relative w-1/2 h-1/2">
               <div className="w-full max-w-2xl">
-                {!prefersReducedMotion ? (
-                  <Lottie
-                    animationData={heroAnimation}
-                    loop={true}
-                    className="w-full h-auto"
-                    style={{ willChange: 'transform' }}
-                    rendererSettings={{
-                      preserveAspectRatio: 'xMidYMid slice',
-                      progressiveLoad: true,
-                      hideOnTransparent: true
-                    }}
-                    // Mobile optimizations
-                    {...(isMobile && {
-                      quality: 'low',
-                      autoplay: true,
-                      loop: true,
-                      speed: 0.8, // Slower on mobile to reduce CPU usage
-                    })}
-                  />
-                ) : (
-                  // Static fallback for reduced motion
-                  <div className="w-full h-auto aspect-square bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                    <div className="text-4xl">💻</div>
-                  </div>
-                )}
+                <Lottie
+                  animationData={heroAnimation}
+                  loop={!isMobile && !prefersReducedMotion} // Disable loop on mobile and for reduced motion
+                  autoplay={!isMobile && !prefersReducedMotion} // Pause animation on mobile and for reduced motion
+                  className="w-full h-auto"
+                  style={{ 
+                    willChange: isMobile ? 'auto' : 'transform'
+                  }}
+                  rendererSettings={{
+                    preserveAspectRatio: 'xMidYMid slice',
+                    progressiveLoad: true,
+                    hideOnTransparent: true
+                  }}
+                />
               </div>
             </div>
           </motion.div>
@@ -199,16 +214,19 @@ const Hero = () => {
       {/* Scroll indicator - Optimized for mobile */}
       <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
-          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          transition={prefersReducedMotion ? {} : { delay: 1.5, duration: 0.6 }}
+          {...getOptimizedMotionProps({
+            initial: { opacity: 0, y: 20 },
+            animate: { opacity: 1, y: 0 },
+            transition: { delay: 1.5, duration: 0.6 }
+          })}
         >
           <motion.button
             onClick={scrollToNext}
             className="flex flex-col items-center space-y-2 text-gray-400 hover:text-white transition-colors duration-300"
-            animate={!prefersReducedMotion && !isMobile ? { y: [0, 10, 0] } : {}}
-            transition={!prefersReducedMotion && !isMobile ? { repeat: Infinity, duration: 2 } : {}}
-            style={{ willChange: 'transform' }}
+            {...getOptimizedMotionProps({
+              animate: { y: [0, 10, 0] },
+              transition: { repeat: Infinity, duration: 2 }
+            })}
           >
             <span className="text-sm">Scroll to explore</span>
             <ArrowDown size={20} />
