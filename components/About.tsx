@@ -9,8 +9,7 @@ const About = () => {
   const { 
     isMobile, 
     prefersReducedMotion, 
-    shouldReduceAnimations,
-    getOptimizedMotionProps 
+    shouldReduceAnimations 
   } = usePerformanceOptimization();
 
   const highlights = [
@@ -38,11 +37,11 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-8 sm:py-12 lg:py-16 bg-gradient-to-t from-gray-900/50 via-gray-800/50 to-black/50 overflow-hidden">
-      {/* Background decorative elements - disabled on mobile */}
-      {!shouldReduceAnimations && (
+      {/* Background decorative elements - conditionally animated */}
+      {!prefersReducedMotion && (
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 sm:top-20 right-4 sm:right-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
+          <div className={`absolute top-10 sm:top-20 right-4 sm:right-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 ${isMobile ? '' : 'animate-pulse'}`}></div>
+          <div className={`absolute bottom-10 sm:bottom-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 ${isMobile ? '' : 'animate-pulse'}`}></div>
         </div>
       )}
 

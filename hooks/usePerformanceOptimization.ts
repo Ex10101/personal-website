@@ -1,11 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { 
-  isMobileDevice, 
-  isLowPerformanceDevice as checkLowPerformanceDevice, 
-  shouldReduceMotion 
-} from '../utils/deviceDetection';
 
 interface PerformanceOptimization {
   isMobile: boolean;
@@ -21,36 +16,43 @@ export const usePerformanceOptimization = (): PerformanceOptimization => {
   const [isLowPerformanceDevice, setIsLowPerformanceDevice] = useState(false);
 
   useEffect(() => {
-    const updateMobileStatus = () => {
-      setIsMobile(isMobileDevice());
+    const checkMobile = () => {
+      const width = window.innerWidth;
+      const userAgent = navigator.userAgent;
+      setIsMobile(
+        width < 768 || 
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
+      );
     };
 
-    const updatePerformanceStatus = () => {
-      setIsLowPerformanceDevice(checkLowPerformanceDevice());
+    const checkPerformance = () => {
+      // Check device performance indicators
+      const connection = (navigator as any).connection;
+      const hardwareConcurrency = navigator.hardwareConcurrency || 2;
+      
+      const isSlowConnection = connection && 
+        (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+      const isLowEndDevice = hardwareConcurrency <= 2;
+      
+      setIsLowPerformanceDevice(isSlowConnection || isLowEndDevice);
     };
 
-    const updateMotionPreference = () => {
-      setPrefersReducedMotion(shouldReduceMotion());
-    };
-
-    // Initial checks
-    updateMobileStatus();
-    updatePerformanceStatus();
-    updateMotionPreference();
-
-    // Event listeners
-    window.addEventListener('resize', updateMobileStatus);
-    
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    mediaQuery.addEventListener('change', updateMotionPreference);
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    checkMobile();
+    checkPerformance();
+
+    window.addEventListener('resize', checkMobile);
+    mediaQuery.addEventListener('change', (e) => setPrefersReducedMotion(e.matches));
 
     return () => {
-      window.removeEventListener('resize', updateMobileStatus);
-      mediaQuery.removeEventListener('change', updateMotionPreference);
+      window.removeEventListener('resize', checkMobile);
+      mediaQuery.removeEventListener('change', (e) => setPrefersReducedMotion(e.matches));
     };
   }, []);
 
-  const shouldReduceAnimations = prefersReducedMotion || isMobile;
+  const shouldReduceAnimations = prefersReducedMotion || (isMobile && isLowPerformanceDevice);
 
   const getOptimizedMotionProps = (props: any) => {
     if (shouldReduceAnimations) {
@@ -60,9 +62,22 @@ export const usePerformanceOptimization = (): PerformanceOptimization => {
         transition: { duration: 0 },
         whileHover: {},
         whileTap: {},
+      };
+    }
+
+    // Add performance optimizations for mobile
+    if (isMobile) {
+      return {
+        ...props,
+        transition: {
+          ...props.transition,
+          type: 'tween', // Use tween instead of spring for better mobile performance
+          ease: 'easeOut',
+        },
         style: {
           ...props.style,
-          willChange: 'auto', // Disable will-change to reduce GPU usage
+          willChange: 'transform',
+          transform: 'translateZ(0)', // Force GPU acceleration
         },
       };
     }

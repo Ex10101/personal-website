@@ -7,13 +7,8 @@ import {
   Palette, 
   Languages
 } from 'lucide-react';
-import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const Skills = () => {
-  const { 
-    shouldReduceAnimations,
-    getOptimizedMotionProps 
-  } = usePerformanceOptimization();
   const skillCategories = [
     {
       title: "Frontend Development",
@@ -63,14 +58,12 @@ const Skills = () => {
 
   return (
     <section id="skills" className="relative py-12 lg:py-16 bg-gradient-to-t from-black/50 via-gray-800/50 to-gray-900/50 overflow-hidden">
-      {/* Background decorative elements - disabled on mobile */}
-      {!shouldReduceAnimations && (
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-purple-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-600/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-        </div>
-      )}
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-64 h-64 bg-purple-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-64 h-64 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-600/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

@@ -4,13 +4,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ExternalLink, Github } from 'lucide-react';
-import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const Projects = () => {
-  const { 
-    shouldReduceAnimations,
-    getOptimizedMotionProps 
-  } = usePerformanceOptimization();
   const projects = [
     {
       id: 1,
@@ -49,13 +44,11 @@ const Projects = () => {
 
   return (
     <section id="projects" className="relative py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-t from-gray-800/50 via-gray-900/50 to-black/50 overflow-hidden">
-      {/* Background decorative elements - disabled on mobile */}
-      {!shouldReduceAnimations && (
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 -right-16 sm:right-10 w-48 h-48 sm:w-64 sm:h-64 bg-purple-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-1/4 -left-16 sm:left-10 w-48 h-48 sm:w-64 sm:h-64 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        </div>
-      )}
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -right-16 sm:right-10 w-48 h-48 sm:w-64 sm:h-64 bg-purple-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-1/4 -left-16 sm:left-10 w-48 h-48 sm:w-64 sm:h-64 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-hidden">
         {/* Section Header */}
