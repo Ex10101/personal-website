@@ -93,7 +93,7 @@ const Hero = () => {
                     }}
                   />
                 ) : (
-                  <span>Hi, I&apos;m <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sergey Davidovich</span></span>
+                  <span>Hi, I'm <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sergey Davidovich</span></span>
                 )}
               </motion.h1>
 

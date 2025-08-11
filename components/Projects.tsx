@@ -8,7 +8,8 @@ import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization'
 
 const Projects = () => {
   const { 
-    shouldReduceAnimations
+    shouldReduceAnimations,
+    getOptimizedMotionProps 
   } = usePerformanceOptimization();
   const projects = [
     {

@@ -11,7 +11,8 @@ import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization'
 
 const Skills = () => {
   const { 
-    shouldReduceAnimations
+    shouldReduceAnimations,
+    getOptimizedMotionProps 
   } = usePerformanceOptimization();
   const skillCategories = [
     {

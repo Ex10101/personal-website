@@ -9,7 +9,8 @@ const About = () => {
   const { 
     isMobile, 
     prefersReducedMotion, 
-    shouldReduceAnimations
+    shouldReduceAnimations,
+    getOptimizedMotionProps 
   } = usePerformanceOptimization();
 
   const highlights = [
