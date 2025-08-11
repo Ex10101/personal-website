@@ -101,3 +101,28 @@ html {
     animation: none !important;
   }
 }
+
+/* Mobile touch optimization */
+.touch-manipulation {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Improve mobile button responsiveness */
+@media (max-width: 1023px) {
+  button, [role="button"] {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Ensure mobile navigation is properly accessible */
+  .mobile-nav-button {
+    min-height: 44px; /* iOS recommended minimum touch target */
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+}

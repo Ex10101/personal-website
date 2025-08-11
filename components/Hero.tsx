@@ -157,7 +157,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Lottie Animation - Optimized for mobile */}
+          {/* Lottie Animation - Paused on mobile */}
           <motion.div
             className="flex justify-center"
             initial={prefersReducedMotion ? {} : { opacity: 0, x: 50 }}
@@ -166,31 +166,23 @@ const Hero = () => {
           >
             <div className="relative w-1/2 h-1/2">
               <div className="w-full max-w-2xl">
-                {!prefersReducedMotion ? (
-                  <Lottie
-                    animationData={heroAnimation}
-                    loop={true}
-                    className="w-full h-auto"
-                    style={{ willChange: 'transform' }}
-                    rendererSettings={{
-                      preserveAspectRatio: 'xMidYMid slice',
-                      progressiveLoad: true,
-                      hideOnTransparent: true
-                    }}
-                    // Mobile optimizations
-                    {...(isMobile && {
-                      quality: 'low',
-                      autoplay: true,
-                      loop: true,
-                      speed: 0.8, // Slower on mobile to reduce CPU usage
-                    })}
-                  />
-                ) : (
-                  // Static fallback for reduced motion
-                  <div className="w-full h-auto aspect-square bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                    <div className="text-4xl">💻</div>
-                  </div>
-                )}
+                <Lottie
+                  animationData={heroAnimation}
+                  loop={!isMobile} // Don't loop on mobile
+                  autoplay={!isMobile} // Don't autoplay on mobile
+                  className="w-full h-auto"
+                  style={{ willChange: 'transform' }}
+                  rendererSettings={{
+                    preserveAspectRatio: 'xMidYMid slice',
+                    progressiveLoad: true,
+                    hideOnTransparent: true
+                  }}
+                  // Mobile optimizations - pause animation
+                  {...(isMobile && {
+                    quality: 'low',
+                    initialSegment: [0, 1], // Show only first frame on mobile
+                  })}
+                />
               </div>
             </div>
           </motion.div>

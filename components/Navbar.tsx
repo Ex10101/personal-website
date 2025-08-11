@@ -25,11 +25,13 @@ const Navbar = () => {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    // Smooth scroll to section
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Small delay to ensure mobile menu closes first
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -94,8 +96,15 @@ const Navbar = () => {
           <div className="lg:hidden">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-400 hover:text-white focus:outline-none focus:text-white p-2"
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                setIsOpen(!isOpen);
+              }}
+              className="text-gray-400 hover:text-white focus:outline-none focus:text-white p-2 touch-manipulation mobile-nav-button"
               whileTap={{ scale: 0.95 }}
+              style={{ WebkitTapHighlightColor: 'transparent' }}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -107,11 +116,12 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden bg-gray-900/90 backdrop-blur-lg"
+            className="lg:hidden bg-gray-900/90 backdrop-blur-lg relative z-50"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            style={{ touchAction: 'manipulation' }}
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => {
@@ -120,11 +130,18 @@ const Navbar = () => {
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-gray-300 hover:text-purple-400 focus:text-purple-400 focus:outline-purple-500 px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2"
-                    whileHover={{ x: 5 }}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    className="text-gray-300 hover:text-purple-400 focus:text-purple-400 focus:outline-purple-500 px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2 touch-manipulation"
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: navItems.indexOf(item) * 0.1 }}
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                    aria-label={`Navigate to ${item.name} section`}
+                    role="button"
+                    tabIndex={0}
                   >
                     <Icon size={18} />
                     <span>{item.name}</span>
@@ -132,11 +149,11 @@ const Navbar = () => {
                 );
               })}
               <motion.button
-                className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2 mt-4"
-                whileHover={{ x: 5 }}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2 mt-4 touch-manipulation"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: navItems.length * 0.1 }}
+                style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <Download size={18} />
                 <span>Download CV</span>
