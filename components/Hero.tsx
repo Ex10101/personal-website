@@ -16,12 +16,10 @@ const Hero = () => {
   } = usePerformanceOptimization();
 
   const handleDownloadCV = () => {
-    // This will be implemented later when i have my CV file
-    console.log('Download CV clicked');
-    // const link = document.createElement('a');
-    // link.href = '/path-to-your-cv.pdf';
-    // link.download = 'Sergey_Davidovich_CV.pdf';
-    // link.click();
+    const link = document.createElement('a');
+    link.href = '/CV-2.pdf';
+    link.download = 'Sergey_Davidovich_CV.pdf';
+    link.click();
   };
 
   const scrollToNext = () => {

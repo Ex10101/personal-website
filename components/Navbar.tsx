@@ -34,6 +34,13 @@ const Navbar = () => {
     }, 100);
   };
 
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/CV-2.pdf';
+    link.download = 'Sergey_Davidovich_CV.pdf';
+    link.click();
+  };
+
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 overflow-hidden ${
@@ -82,6 +89,7 @@ const Navbar = () => {
                 );
               })}
               <motion.button
+                onClick={handleDownloadCV}
                 className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -149,6 +157,11 @@ const Navbar = () => {
                 );
               })}
               <motion.button
+                onClick={handleDownloadCV}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  handleDownloadCV();
+                }}
                 className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200 flex items-center space-x-2 mt-4 touch-manipulation"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}

@@ -1,28 +1,38 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Download } from 'lucide-react';
 
 const Contact = () => {
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/CV-2.pdf';
+    link.download = 'Sergey_Davidovich_CV.pdf';
+    link.click();
+  };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
       value: "sergeydavidovich12@gmail.com",
-      link: "mailto:sergeydavidovich12@gmail.com"
+      link: "mailto:sergeydavidovich12@gmail.com",
+      onClick: undefined
     },
     {
       icon: Phone,
       title: "Phone",
       value: "+421 951 877 027",
-      link: "tel:+421951877027"
+      link: "tel:+421951877027",
+      onClick: undefined
     },
     {
-      icon: MapPin,
-      title: "Location",
-      value: "Bratislava, Slovakia",
-      link: "#"
+      icon: Download,
+      title: "Download CV",
+      value: "PDF Format",
+      link: "#",
+      onClick: handleDownloadCV
     }
   ];
 
@@ -82,12 +92,18 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {contactInfo.map((item, index) => (
-              <motion.a
+              <motion.div
                 key={index}
-                href={item.link}
-                className="group flex flex-col items-center p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
+                className="group flex flex-col items-center p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={item.onClick || (() => {
+                  if (item.link.startsWith('mailto:') || item.link.startsWith('tel:')) {
+                    window.location.href = item.link;
+                  } else if (item.link !== '#') {
+                    window.open(item.link, '_blank');
+                  }
+                })}
               >
                 <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center group-hover:from-purple-500 group-hover:to-blue-500 transition-all duration-300 mb-2">
                   <item.icon className="w-5 h-5 text-white" />
@@ -96,7 +112,7 @@ const Contact = () => {
                   <h4 className="text-white font-medium text-sm mb-1">{item.title}</h4>
                   <p className="text-gray-300 text-xs">{item.value}</p>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </motion.div>
 
