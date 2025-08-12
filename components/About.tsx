@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Code2, Database, Globe, Server } from 'lucide-react';
+import { Code2, Globe, MapPin, Heart, Gamepad2 } from 'lucide-react';
 import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
 
 const About = () => {
@@ -15,23 +15,23 @@ const About = () => {
   const highlights = [
     {
       icon: Code2,
-      title: "Frontend Development",
-      description: "Creating responsive and interactive user interfaces with React and Next.js"
+      title: "10 Years Coding",
+      description: "Programming since age 8"
     },
     {
-      icon: Server,
-      title: "Backend Development", 
-      description: "Building robust APIs and server-side applications with Node.js and Express"
+      icon: MapPin,
+      title: "International Move", 
+      description: "Belarus to Slovakia at 15"
     },
     {
-      icon: Database,
-      title: "Database Management",
-      description: "Working with both SQL and NoSQL databases like PostgreSQL and MongoDB"
+      icon: Heart,
+      title: "Chess & Travel",
+      description: "Strategic thinking meets adventure"
     },
     {
-      icon: Globe,
-      title: "Full Stack Solutions",
-      description: "End-to-end application development from concept to deployment"
+      icon: Gamepad2,
+      title: "Gaming & Cars",
+      description: "Digital worlds and automotive passion"
     }
   ];
 
@@ -128,9 +128,9 @@ const About = () => {
                 transition={{ delay: 0.4, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                Passionate Developer with a{' '}
+                Motivated & Passionate{' '}
                 <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-                  Vision for Innovation
+                  Young Developer
                 </span>
               </motion.h2>
 
@@ -142,21 +142,21 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 <p className="text-base sm:text-lg">
-                  Hello! I&apos;m Sergey Davidovich, a passionate full stack developer with a love for creating 
-                  digital experiences that make a difference. With expertise spanning both frontend and backend 
-                  technologies, I bring ideas to life through clean, efficient code and thoughtful design.
+                  Hey there! I&apos;m Sergey, an 18-year-old developer originally from Belarus who moved with my 
+                  family to Slovakia when I was 15. I&apos;ve been programming since I was 8 years old and absolutely 
+                  love what I do!
                 </p>
                 
                 <p className="text-sm sm:text-base">
-                  My journey in software development has equipped me with a comprehensive skill set in modern 
-                  web technologies. I thrive on solving complex problems and turning innovative concepts into 
-                  functional, scalable applications that users love to interact with.
+                  My coding adventure started with game development (because who doesn&apos;t want to create their own 
+                  games?), then I dabbled in mobile apps, but eventually fell in love with web development. There&apos;s 
+                  something magical about building things that millions of people can use right from their browsers.
                 </p>
 
                 <p className="text-sm sm:text-base">
-                  When I&apos;m not coding, you&apos;ll find me exploring the latest tech trends, contributing to open-source 
-                  projects, or sharing knowledge with the developer community. I believe in continuous learning 
-                  and staying ahead of the curve in this ever-evolving field.
+                  When I&apos;m not glued to my screen coding, you&apos;ll find me playing chess, planning my next 
+                  travel adventure, driving and learning about cars, or getting lost in a good video game. These hobbies keep 
+                  me creative and surprisingly help me think differently about coding challenges!
                 </p>
               </motion.div>
             </div>

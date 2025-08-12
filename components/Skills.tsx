@@ -15,13 +15,13 @@ const Skills = () => {
       icon: Code2,
       color: "from-purple-500 to-blue-500",
       skills: [
-        { name: "React", level: 95 },
+        { name: "React", level: 90 },
         { name: "Next.js", level: 90 },
-        { name: "TypeScript", level: 85 },
+        { name: "TypeScript", level: 80 },
         { name: "JavaScript", level: 95 },
         { name: "HTML", level: 98 },
         { name: "CSS", level: 90 },
-        { name: "Tailwind CSS", level: 92 }
+        { name: "Tailwind CSS", level: 90 }
       ]
     },
     {
@@ -29,12 +29,12 @@ const Skills = () => {
       icon: Server,
       color: "from-purple-500 to-blue-500",
       skills: [
-        { name: "Node.js", level: 88 },
-        { name: "Express.js", level: 85 },
+        { name: "Node.js", level: 80 },
+        { name: "Express.js", level: 90 },
         { name: "RESTful API", level: 90 },
-        { name: "MongoDB", level: 82 },
-        { name: "PostgreSQL", level: 80 },
-        { name: "Supabase", level: 85 }
+        { name: "MongoDB", level: 85 },
+        { name: "PostgreSQL", level: 85 },
+        { name: "Supabase", level: 90 }
       ]
     },
     {
@@ -42,10 +42,10 @@ const Skills = () => {
       icon: Palette,
       color: "from-purple-500 to-blue-500",
       skills: [
-        { name: "Figma", level: 88 },
-        { name: "Photoshop", level: 85 },
+        { name: "Figma", level: 80 },
+        { name: "Photoshop", level: 70 },
         { name: "Git", level: 90 },
-        { name: "Docker", level: 75 }
+        { name: "Docker", level: 65 }
       ]
     }
   ];
