@@ -40,19 +40,19 @@ const Contact = () => {
     {
       icon: Github,
       name: "GitHub",
-      url: "https://github.com/ex10101",
+      url: "https://github.com/Ex10101",
       color: "hover:text-gray-300"
     },
     {
       icon: Linkedin,
       name: "LinkedIn", 
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://www.linkedin.com/in/sergey-davidovich-2b9b7a246/",
       color: "hover:text-blue-500"
     },
     {
       icon: Twitter,
       name: "Twitter",
-      url: "https://twitter.com/yourusername", 
+      url: "https://x.com/sergey_devvv", 
       color: "hover:text-blue-500"
     }
   ];

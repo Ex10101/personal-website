@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import { Download, ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Download, ArrowDown, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import heroAnimation from '../public/hero-animation.json';
 import Typewriter from 'typewriter-effect';
 import { usePerformanceOptimization } from '../hooks/usePerformanceOptimization';
@@ -124,7 +124,7 @@ const Hero = () => {
 
               <div className="flex space-x-4">
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/Ex10101"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
@@ -134,7 +134,7 @@ const Hero = () => {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/sergey-davidovich-2b9b7a246/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
@@ -144,12 +144,14 @@ const Hero = () => {
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
-                  href="mailto:your.email@example.com"
+                  href="https://x.com/sergey_devvv"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-4 bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-gray-700/50 backdrop-blur-sm"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Mail size={20} />
+                  <Twitter size={20} />
                 </motion.a>
               </div>
             </motion.div>
